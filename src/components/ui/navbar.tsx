@@ -5,9 +5,11 @@ import React from "react";
 import { CircleUserRound, ShoppingCart } from "lucide-react";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { DropdownMenubar } from "../drop-down-menu";
+import useCart from "@/hook/use-cart";
 
 const Navbar = () => {
   const { userId } = useAuth();
+  const {cartItems} = useCart()
   return (
     <nav className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-white">
       {/* logo */}
@@ -31,7 +33,7 @@ const Navbar = () => {
           className="flex items-center gap-x-2 px-2 py-1 border border-gray-400 rounded-md hover:text-white hover:bg-black transition-all duration-300 ease-linear"
         >
           <ShoppingCart />
-          <p>Cart (0)</p>
+          <p>Cart ({cartItems.length})</p>
         </Link>
         <div>{userId && <DropdownMenubar />}</div>
         <div>
