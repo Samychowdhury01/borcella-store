@@ -34,8 +34,15 @@ const Navbar = () => {
           <p>Cart (0)</p>
         </Link>
         <div>{userId && <DropdownMenubar />}</div>
-        <div>{userId ? <DropdownMenubar /> : <Link href='/sign-in'>
-            <CircleUserRound/></Link>}</div>
+        <div>
+          {userId ? (
+            <UserButton />
+          ) : (
+            <Link href="/sign-in">
+              <CircleUserRound />
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );
