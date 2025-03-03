@@ -10,7 +10,7 @@ import React, { useState } from "react";
 const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
   const [selectedColor, setSelectedColor] = useState(productInfo.colors[0]);
   const [selectedSize, setSelectedSize] = useState(productInfo.sizes[0]);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState<number>(1);
   const cart = useCart();
   //   quantity handle
   const handleQuantity = (type: "increase" | "decrease") => {
