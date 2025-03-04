@@ -20,12 +20,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Card>
       <Link href={`/products/${product.id}`}>
         <CardContent>
-          <div>
+          <div className="w-[250px] h-[300px]">
             <Image
               alt={product.title}
               src={product.media[0]}
               width={250}
               height={300}
+              className="w-full h-full object-cover"
             />
           </div>
           <CardTitle className="mt-3">{product.title}</CardTitle>
