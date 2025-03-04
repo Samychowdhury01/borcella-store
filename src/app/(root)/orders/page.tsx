@@ -6,7 +6,7 @@ import Image from "next/image";
 
 type TOrder = {
   id: string;
-  shippingAddress: Object;
+  shippingAddress: Record<string, unknown>;
   customerClerkId: string;
   products: TProductOrder[];
   shippingRate: string;
@@ -41,7 +41,7 @@ const Orders = async () => {
           >
             <div className="flex flex-col gap-5">
               {order?.products?.map((orderItem: TProductOrder) => (
-                <div className="flex items-center gap-4">
+                <div key={orderItem.id} className="flex items-center gap-4">
                   <Image
                     src={orderItem.product.media[0]}
                     alt={orderItem.product.title}

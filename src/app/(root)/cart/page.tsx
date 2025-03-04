@@ -8,15 +8,15 @@ import Image from "next/image";
 import { redirect, useRouter } from "next/navigation";
 
 const CartPage = () => {
+  const { cartItems, decreaseQuantity, increaseQuantity, removeItem } =
+    useCart();
+
   const router = useRouter();
   const { user } = useUser();
 
   if (!user) {
     return redirect("/");
   }
-
-  const { cartItems, decreaseQuantity, increaseQuantity, removeItem } =
-    useCart();
 
   const total = cartItems.reduce(
     (acc, cartItem) => acc + cartItem.item.price * cartItem.quantity,
@@ -58,7 +58,10 @@ const CartPage = () => {
         ) : (
           <div>
             {cartItems.map((cartItem) => (
-              <div className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between border rounded-lg">
+              <div
+                key={cartItem.item.id}
+                className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between border rounded-lg"
+              >
                 <div className="flex items-center">
                   <Image
                     src={cartItem.item.media[0]}

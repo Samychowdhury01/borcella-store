@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import Collections from "./_components/collections";
-import { getCollections } from "@/actions/collection-action";
 import ProductList from "./_components/product-list";
 
 const HomePage = () => {
