@@ -10,7 +10,9 @@ export const getProducts = async () => {
 };
 
 export const getProductDetails = async(productId: string) => {
-  const products = await fetch(`${process.env.API_URL}/products/${productId}`);
+  const products = await fetch(`${process.env.API_URL}/products/${productId}`, {
+    cache: "no-store"
+  });
   const data = await products.json();
 
   if (data?.success) {

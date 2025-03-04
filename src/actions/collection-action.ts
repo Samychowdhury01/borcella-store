@@ -1,5 +1,7 @@
 export const getCollections = async () => {
-  const collections = await fetch(`${process.env.API_URL}/collections`);
+  const collections = await fetch(`${process.env.API_URL}/collections`, {
+    cache: "no-store"
+  });
   const data = await collections.json();
   if (data?.success) {
     return data?.data;
