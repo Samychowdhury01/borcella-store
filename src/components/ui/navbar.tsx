@@ -1,17 +1,20 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
 import { CircleUserRound, ShoppingCart } from "lucide-react";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { DropdownMenubar } from "../drop-down-menu";
 import useCart from "@/hook/use-cart";
+import NavbarRoutes from "../navbar-routes";
+import SearchBox from "./search-box";
 
 const Navbar = () => {
   const { userId } = useAuth();
-  const {cartItems} = useCart()
+  const { cartItems } = useCart();
+
   return (
-    <nav className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-white">
+    <nav className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-white max-sm:px-2">
       {/* logo */}
       <Link href="/">
         <Image
@@ -22,20 +25,26 @@ const Navbar = () => {
         />
       </Link>
 
-      {/* middle items */}
-      <div>
-        <Link href="/">Home</Link>
+      <div className="flex items-center gap-3">
+        {/* middle items will be hidden it the small device*/}
+        <div className="max-lg:hidden">
+          <NavbarRoutes />
+        </div>
+        {/* search box */}
+        <SearchBox />
       </div>
       {/* cart and user button */}
       <div className="flex items-center gap-x-2">
         <Link
           href="/cart"
-          className="flex items-center gap-x-2 px-2 py-1 border border-gray-400 rounded-md hover:text-white hover:bg-black transition-all duration-300 ease-linear"
+          className="lg:flex items-center gap-x-2 px-2 py-1 border border-gray-400 rounded-md hover:text-white hover:bg-black transition-all duration-300 ease-linear hidden"
         >
           <ShoppingCart />
           <p>Cart ({cartItems.length})</p>
         </Link>
-        <div>{userId && <DropdownMenubar />}</div>
+        <div className="lg:hidden">
+          <DropdownMenubar />
+        </div>
         <div>
           {userId ? (
             <UserButton />

@@ -32,7 +32,7 @@ export async function GET(req: Request) {
       statusCode: 201,
       success: true,
       message: "new user created into the database",
-      data: newUser,
+      data: user ? user : newUser,
     });
   } catch (error) {
     console.log("[ERROR: at user GET method]", error);

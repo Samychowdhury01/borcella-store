@@ -19,3 +19,14 @@ export const getProductDetails = async(productId: string) => {
     return {};
   }
 }
+
+export const getRelatedProducts = async(productId: string) => {
+  const products = await fetch(`${process.env.API_URL}/products/${productId}/related`);
+  const data = await products.json();
+
+  if (data?.success) {
+    return data?.data;
+  } else {
+    return [];
+  }
+}

@@ -5,11 +5,16 @@ import useCart from "@/hook/use-cart";
 import { useUser } from "@clerk/nextjs";
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const CartPage = () => {
   const router = useRouter();
   const { user } = useUser();
+
+  if (!user) {
+    return redirect("/");
+  }
+
   const { cartItems, decreaseQuantity, increaseQuantity, removeItem } =
     useCart();
 
@@ -37,7 +42,7 @@ const CartPage = () => {
         const data = await res.json();
         window.location.href = data.url;
       }
-    } catch (err) { 
+    } catch (err) {
       console.log("[checkout_POST]", err);
     }
   };
@@ -118,7 +123,9 @@ const CartPage = () => {
           <span>Total Amount</span>
           <span>$ {totalRounded}</span>
         </div>
-        <Button onClick={handleCheckout} className="cursor-pointer">Proceed to Checkout</Button>
+        <Button onClick={handleCheckout} className="cursor-pointer">
+          Proceed to Checkout
+        </Button>
       </div>
     </div>
   );

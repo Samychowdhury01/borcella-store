@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { userId } = await auth()
-    const { productId } = await req.json()
+    const { userId } = await auth();
+    const { productId } = await req.json();
 
     if (!userId) {
       return NextResponse.json({
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
         success: false,
         message: "Unauthorized",
         data: [],
-      })
+      });
     }
 
     if (!productId) {
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
         success: false,
         message: "Product Id is required",
         data: [],
-      })
+      });
     }
 
     // Find the user first to check if the product is already in the wishlist
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       select: {
         wishlist: true,
       },
-    })
+    });
 
     if (!user) {
       return NextResponse.json({
@@ -41,10 +41,10 @@ export async function POST(req: Request) {
         success: false,
         message: "User not found",
         data: [],
-      })
+      });
     }
 
-    const isLiked = user.wishlist?.includes(productId)
+    const isLiked = user.wishlist?.includes(productId);
 
     // Update the user with a single database operation
     const updatedUser = await prisma.user.update({
@@ -59,23 +59,24 @@ export async function POST(req: Request) {
       select: {
         wishlist: true,
       },
-    })
+    });
 
     return NextResponse.json({
       statusCode: 200,
       success: true,
-      message: isLiked ? "Product removed from wishlist" : "Product added to wishlist",
+      message: isLiked
+        ? "Product removed from wishlist"
+        : "Product added to wishlist",
       data: updatedUser,
-    })
+    });
   } catch (error) {
-    console.log("[ERROR at wishlist]:", error)
+    console.log("[ERROR at wishlist]:", error);
     return NextResponse.json({
       statusCode: 500,
       success: false,
       message: "Internal Server Error",
       data: [],
-    })
+    });
   }
 }
-
 

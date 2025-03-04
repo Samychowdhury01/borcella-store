@@ -19,7 +19,7 @@ const AddToWishlist = ({ productId }: { productId: string }) => {
     startTransition(async () => {
       const res = await fetch("/api/users");
       const data = await res.json();
-
+console.log(data)
       if (data.success) {
         setSignInUser(data.data);
         setIsLiked(data?.data?.wishlist?.includes(productId));

@@ -5,6 +5,7 @@ import { Check, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import "./_style/index.css";
 import useCart from "@/hook/use-cart";
+import Link from "next/link";
 export default function PaymentSuccessPage() {
   const cart = useCart();
   const [showCheck, setShowCheck] = useState(false);
@@ -60,10 +61,12 @@ export default function PaymentSuccessPage() {
               ? "translate-y-0 opacity-100"
               : "translate-y-4 opacity-0"
           }`}
-          onClick={() => console.log("Navigating to home...")}
+          asChild
         >
-          <Home className="mr-2 h-4 w-4" />
-          Back to Home
+          <Link href={"/"}>
+            <Home className="mr-2 h-4 w-4" />
+            Back to Home
+          </Link>
         </Button>
       </div>
     </div>
