@@ -23,13 +23,14 @@ export const routes = [
 const NavbarRoutes = () => {
   const { userId } = useAuth();
   const pathname = usePathname();
-const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => pathname === href;
+
   return (
     <div className={"flex items-center gap-4"}>
       {routes.map((route, index) => (
         <Link
           key={index}
-          href={userId ? route.href : "/sign-in"}
+          href={(route.href === "/" && "/") || userId ? route.href : "/sign-in"}
           className={cn(
             "hover:text-gray-500 transition-all duration-150 ease-linear",
             isActive(route.href) && "text-gray-2 font-semibold"
