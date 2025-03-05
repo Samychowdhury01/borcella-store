@@ -9,17 +9,19 @@ const SearchPage = async ({
 }) => {
   const { query } = await params;
   const searchResults = await getSearchResults(query);
-  const decodedQuery = decodeURIComponent(query)
+  const decodedQuery = decodeURIComponent(query);
   return (
     <section className="px-10 py-5 ">
-      <p className="text-heading3 font-bold my-10">Search result for {decodedQuery}</p>
+      <p className="text-heading3 font-bold my-10">
+        Search result for {decodedQuery}
+      </p>
 
       {!searchResults.length && (
         <p className="font-semibold text-destructive">
           No products found with {decodedQuery}
         </p>
       )}
-      <div className="flex flex-wrap justify-between gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-5">
         {searchResults.length !== 0 &&
           searchResults?.map((product: TProduct) => (
             <ProductCard key={product.id} product={product} />
