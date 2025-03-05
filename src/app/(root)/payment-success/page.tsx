@@ -24,7 +24,7 @@ export default function PaymentSuccessPage() {
       clearTimeout(checkTimer);
       clearTimeout(contentTimer);
     };
-  }, [cart]);
+  }, []);
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-green-50 to-green-100 p-4">
