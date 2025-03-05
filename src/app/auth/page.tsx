@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
@@ -20,8 +20,6 @@ export default function SignInPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams?.get("callbackUrl") || "/";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,7 +36,7 @@ export default function SignInPage() {
         redirect: false,
         email: formData.email,
         password: formData.password,
-        callbackUrl: callbackUrl || "/dashboard",
+        redirectTo: "/",
       });
       console.log({ result, email: formData.email, pass: formData.password });
       if (result?.error) {
@@ -56,7 +54,7 @@ export default function SignInPage() {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
-      await signIn("google", { callbackUrl });
+      await signIn("google", { redirectTo: "/" });
     } catch (error) {
       console.error(error);
       setError("Failed to sign in with Google");
