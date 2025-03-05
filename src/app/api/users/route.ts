@@ -1,12 +1,12 @@
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
-import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   try {
-    const { userId } = await auth();
-
-    if (!userId) {
+    const session = await auth();
+    const userId = session?.user?.id;
+    if (!userId || !session) {
       return NextResponse.json({
         statusCode: 401,
         success: false,
@@ -17,14 +17,15 @@ export async function GET(req: Request) {
 
     const user = await prisma.user.findUnique({
       where: {
-        clerkId: userId,
+        userId,
       },
     });
+
     let newUser;
     if (!user) {
       newUser = await prisma.user.create({
         data: {
-          clerkId: userId,
+          userId,
         },
       });
     }

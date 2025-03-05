@@ -1,10 +1,10 @@
 import prisma from "@/lib/prisma";
 import { getProductDetails } from "./product-actions";
 
-export const getWishlistItems = async (clerkId: string) => {
+export const getWishlistItems = async (userId: string) => {
   const user = await prisma.user.findUnique({
     where: {
-      clerkId,
+      userId,
     },
   });
   if (!user) {

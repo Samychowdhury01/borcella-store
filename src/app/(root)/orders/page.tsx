@@ -1,7 +1,7 @@
 import { getOrders } from "@/actions/order-actions";
+import { auth } from "@/auth";
 import { Card } from "@/components/ui/card";
 import { TProduct } from "@/types/product-type";
-import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 
 type TOrder = {
@@ -22,7 +22,8 @@ type TProductOrder = {
 };
 
 const Orders = async () => {
-  const { userId } = await auth();
+  const session = await auth();
+  const userId = session?.user?.id;
   const orders = await getOrders(userId as string);
   console.log(orders, "server order");
   return (

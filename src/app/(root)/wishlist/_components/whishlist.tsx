@@ -1,11 +1,13 @@
 import { getWishlistItems } from "@/actions/wishlist-action";
+import { auth } from "@/auth";
 import ProductCard from "@/components/product-card";
 import { TProduct } from "@/types/product-type";
-import { auth } from "@clerk/nextjs/server";
+
 import { redirect } from "next/navigation";
 
 export default async function Wishlist() {
-  const { userId } = await auth();
+  const session = await auth();
+      const userId = session?.user?.id;
 
   if (!userId) {
     return redirect("/");

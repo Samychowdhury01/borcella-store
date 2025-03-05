@@ -1,10 +1,12 @@
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
-import { auth } from "@clerk/nextjs/server";
+
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { userId } = await auth();
+    const session = await auth();
+    const userId = session?.user?.id;
     const { productId } = await req.json();
 
     if (!userId) {
@@ -28,7 +30,7 @@ export async function POST(req: Request) {
     // Find the user first to check if the product is already in the wishlist
     const user = await prisma.user.findUnique({
       where: {
-        clerkId: userId,
+        userId,
       },
       select: {
         wishlist: true,
@@ -49,7 +51,7 @@ export async function POST(req: Request) {
     // Update the user with a single database operation
     const updatedUser = await prisma.user.update({
       where: {
-        clerkId: userId,
+        userId,
       },
       data: {
         wishlist: isLiked
@@ -79,4 +81,3 @@ export async function POST(req: Request) {
     });
   }
 }
-

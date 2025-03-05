@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import useCart from "@/hook/use-cart";
-import { useUser } from "@clerk/nextjs";
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect, useRouter } from "next/navigation";
 
@@ -12,9 +12,9 @@ const CartPage = () => {
     useCart();
 
   const router = useRouter();
-  const { user } = useUser();
-
-  if (!user) {
+  const session = useSession();
+  const user = session?.data?.user;
+  if (!session || !user) {
     return redirect("/");
   }
 
@@ -25,9 +25,9 @@ const CartPage = () => {
   const totalRounded = parseFloat(total.toFixed(2));
 
   const customer = {
-    clerkId: user?.id,
-    email: user?.emailAddresses[0].emailAddress,
-    name: user?.fullName,
+    userId: user.id,
+    email: user.email,
+    name: user?.name,
   };
 
   const handleCheckout = async () => {

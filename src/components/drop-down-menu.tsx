@@ -10,14 +10,15 @@ import {
 import { Menu, ShoppingCart } from "lucide-react";
 import { routes } from "./navbar-routes";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import useCart from "@/hook/use-cart";
+import { useSession } from "next-auth/react";
 
 export function DropdownMenubar() {
   const { cartItems } = useCart();
-  const { userId } = useAuth();
+  const session = useSession();
+    const userId = session.data?.user?.id;
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
   return (
@@ -33,7 +34,7 @@ export function DropdownMenubar() {
         {routes.map((route, index) => (
           <DropdownMenuItem key={index}>
             <Link
-              href={userId ? route.href : "/sign-in"}
+              href={userId ? route.href : "/auth"}
               className={cn(
                 " hover:text-gray-500 transition-all duration-150 ease-linear",
                 isActive(route.href) && "text-gray-2 font-semibold"

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useAuth } from "@clerk/nextjs";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -21,7 +21,8 @@ export const routes = [
 ];
 
 const NavbarRoutes = () => {
-  const { userId } = useAuth();
+  const session = useSession();
+  const userId = session.data?.user?.id;
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
 
@@ -30,7 +31,7 @@ const NavbarRoutes = () => {
       {routes.map((route, index) => (
         <Link
           key={index}
-          href={(route.href === "/" && "/") || userId ? route.href : "/sign-in"}
+          href={(route.href === "/" && "/") || userId ? route.href : "/auth"}
           className={cn(
             "hover:text-gray-500 transition-all duration-150 ease-linear",
             isActive(route.href) && "text-gray-2 font-semibold"

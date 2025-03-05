@@ -3,10 +3,11 @@ import img from "../../../../public/products/bag/1.jpg";
 import img2 from "../../../../public/products/dress/1.jpg";
 import img3 from "../../../../public/products/hat/1.jpg";
 import img4 from "../../../../public/products/dress/4.jpg";
+import { Section } from "@/components/responsive-section";
 
 export default function PhotoGallery() {
   return (
-    <section>
+    <Section>
       <h2 className="text-heading1 leading-heading1 font-bold mb-5 text-center">
         Our Products Looks
       </h2>
@@ -56,6 +57,6 @@ export default function PhotoGallery() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
