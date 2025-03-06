@@ -33,6 +33,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!user) {
           throw new Error("No user found with this email");
         }
+        if (user.status === "pending") {
+          throw new Error("You are not verified");
+        }
 
         // For demo purposes, we'll check against our mock user
         // In a real app, you would compare with the hashed password from your database
@@ -54,8 +57,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   pages: {
-    signIn: "/auth/signin",
-    error: "/auth/error", 
+    signIn: "/auth",
   },
   callbacks: {
     async jwt({ token, user }) {

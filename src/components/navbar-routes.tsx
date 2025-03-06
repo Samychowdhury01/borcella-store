@@ -31,7 +31,7 @@ const NavbarRoutes = () => {
       {routes.map((route, index) => (
         <Link
           key={index}
-          href={(route.href === "/" && "/") || userId ? route.href : "/auth"}
+          href={route.href}
           className={cn(
             "hover:text-gray-500 transition-all duration-150 ease-linear",
             isActive(route.href) && "text-gray-2 font-semibold"

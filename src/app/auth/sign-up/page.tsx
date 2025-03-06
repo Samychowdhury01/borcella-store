@@ -53,11 +53,10 @@ export default function SignUpPage() {
         const newUser = await createUser(values);
 
         if (newUser?.id) {
-          // Redirect to sign-in page
-          toast.success("Account creation successful");
-          router.push("/auth");
+          router.push(`/verify/?email=${newUser.email}`);
         }
       } catch (err) {
+      
         setError(err instanceof Error ? err.message : "An error occurred");
         toast.error("Something went wrong!");
       }
@@ -134,10 +133,7 @@ export default function SignUpPage() {
           <div className="text-center text-sm">
             <p>
               Already have an account?{" "}
-              <Link
-                href="/auth"
-                className="text-blue-300 hover:underline"
-              >
+              <Link href="/auth" className="text-blue-300 hover:underline">
                 Sign In
               </Link>
             </p>

@@ -1,51 +1,20 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import useCart from "@/hook/use-cart";
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
-import { useSession } from "next-auth/react";
+
 import Image from "next/image";
-import { redirect, useRouter } from "next/navigation";
+import ProceedToCheckout from "./_components/proceed-to-checkout";
 
 const CartPage = () => {
   const { cartItems, decreaseQuantity, increaseQuantity, removeItem } =
     useCart();
-
-  const router = useRouter();
-  const session = useSession();
-  const user = session?.data?.user;
-  if (!session || !user) {
-    return redirect("/");
-  }
 
   const total = cartItems.reduce(
     (acc, cartItem) => acc + cartItem.item.price * cartItem.quantity,
     0
   );
   const totalRounded = parseFloat(total.toFixed(2));
-
-  const customer = {
-    userId: user.id,
-    email: user.email,
-    name: user?.name,
-  };
-
-  const handleCheckout = async () => {
-    try {
-      if (!user) {
-        router.push("sign-in");
-      } else {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
-          method: "POST",
-          body: JSON.stringify({ cartItems: cartItems, customer }),
-        });
-        const data = await res.json();
-        window.location.href = data.url;
-      }
-    } catch (err) {
-      console.log("[checkout_POST]", err);
-    }
-  };
 
   return (
     <div className="flex gap-20 py-16 px-10 max-lg:flex-col max-sm:px-3">
@@ -126,9 +95,7 @@ const CartPage = () => {
           <span>Total Amount</span>
           <span>$ {totalRounded}</span>
         </div>
-        <Button onClick={handleCheckout} className="cursor-pointer">
-          Proceed to Checkout
-        </Button>
+        <ProceedToCheckout />
       </div>
     </div>
   );

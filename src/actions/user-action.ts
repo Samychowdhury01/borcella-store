@@ -1,6 +1,8 @@
-"use server"
+"use server";
 
+import { sendMail } from "@/lib/mail";
 import prisma from "@/lib/prisma";
+import { generateOTP, getHTML } from "@/lib/utils";
 import bcrypt from "bcryptjs";
 
 interface Payload {
@@ -10,25 +12,56 @@ interface Payload {
 }
 
 export const createUser = async (payload: Payload) => {
-  const { email, name, password } = payload;
-  const hashedPassword = await bcrypt.hash(
-    password,
-    Number(process.env.SALT_ROUND)
-  );
-  const newData = {
-    email,
-    name,
-    password: hashedPassword,
-  };
-
-  const newSignUpUser = await prisma.signUp.create({
-    data: newData,
+  const res = await fetch(`${process.env.BASE_URL}/api/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
   });
 
-  if (!newSignUpUser.id) {
+  const result = await res.json();
+  if (!result.success) {
     return null;
   }
-  return newSignUpUser;
+  return result.data;
+};
+
+export const verifyUser = async (email: string, otp: number) => {
+  // first check if user exist or not
+  const isUserExist = await prisma.signUp.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (!isUserExist) {
+    return {
+      status: false,
+      message: "No user found with this mail",
+    };
+  }
+  const isOTPMatched = Number(otp) === Number(isUserExist.otp);
+  // check if otp matched or not
+  if (isUserExist && !isOTPMatched) {
+    return {
+      status: false,
+      message: "Wrong OTP! Try Again",
+    };
+  }
+  await prisma.signUp.update({
+    where: {
+      email,
+    },
+    data: {
+      status: "active",
+    },
+  });
+
+  return {
+    status: true,
+    message: "Verification successful!",
+  };
 };
 
 export const getUser = async (email: string) => {

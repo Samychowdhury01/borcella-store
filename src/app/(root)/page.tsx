@@ -7,16 +7,20 @@ import PhotoGallery from "./_components/photo-gallery";
 const HomePage = () => {
   return (
     <div>
-      {/* banner Image */}
-      <div className="relative max-w-7xl mx-auto h-[40vh] md:h-[90vh]">
+      <div className="w-full flex justify-center px-4 sm:px-6 md:px-8">
+      <div className="relative w-full max-w-7xl aspect-[21/9] rounded-lg overflow-hidden">
         <Image
-          src="/banner.png" // Image should be in the public folder
-          alt="Responsive Banner"
+          src="/banner.png"
+          alt="Banner image"
           fill
-          className="object-fill"
           priority
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1280px"
+          style={{
+            objectFit: "cover",
+          }}
         />
       </div>
+    </div>
       <Collections />
       <ProductList />
       <PhotoGallery />

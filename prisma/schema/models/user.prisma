@@ -11,6 +11,8 @@ model User {
         email    String
         password String
         name     String
+        status  String  @default("pending")
+        otp     Int?    
 
         @@unique([email])
     }

@@ -74,11 +74,7 @@ export default function SignInPage() {
             disabled={isLoading}
             className="relative w-full"
           >
-            {isLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.google className="mr-2 h-4 w-4" />
-            )}
+            <Icons.google className="mr-2 h-4 w-4" />
             Sign-in with Google
           </Button>
 
@@ -128,7 +124,7 @@ export default function SignInPage() {
           </form>
 
           <div className="text-center text-sm">
-            <p >
+            <p>
               <span className=" mr-1">Don't have an account?</span>
               <Link
                 href="/auth/sign-up"
