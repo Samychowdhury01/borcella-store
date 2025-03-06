@@ -41,6 +41,14 @@ export const verifyUser = async (email: string, otp: number) => {
       message: "No user found with this mail",
     };
   }
+
+  // check if user active and already verified
+  if (isUserExist && isUserExist.status === "active") {
+    return {
+      status: false,
+      message: "You are already verified",
+    };
+  }
   const isOTPMatched = Number(otp) === Number(isUserExist.otp);
   // check if otp matched or not
   if (isUserExist && !isOTPMatched) {
@@ -55,6 +63,7 @@ export const verifyUser = async (email: string, otp: number) => {
     },
     data: {
       status: "active",
+      otp: null,
     },
   });
 
