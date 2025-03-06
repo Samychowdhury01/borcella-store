@@ -128,8 +128,8 @@ export default function SignInPage() {
           </form>
 
           <div className="text-center text-sm">
-            <p className="text-gray-2">
-              Don't have an account?{" "}
+            <p >
+              <span className=" mr-1">Don't have an account?</span>
               <Link
                 href="/auth/sign-up"
                 className="text-blue-300 hover:underline"

@@ -8,7 +8,7 @@ import React from "react";
 const Collections = async () => {
   const collections = await getCollections();
   return (
-    <Section className="flex flex-col items-center gap-10">
+    <Section className="flex flex-col items-center gap-10 mt-16">
       <>
         {/* heading */}
         <h2 className="text-heading1 leading-heading1 font-bold mb-5 text-center">

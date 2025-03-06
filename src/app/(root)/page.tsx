@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div>
       {/* banner Image */}
-      <div className="relative max-w-screen h-[40vh] md:h-[90vh] overflow-hidden">
+      <div className="relative max-w-7xl mx-auto h-[40vh] md:h-[90vh]">
         <Image
           src="/banner.png" // Image should be in the public folder
           alt="Responsive Banner"
