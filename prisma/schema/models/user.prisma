@@ -6,13 +6,13 @@ model User {
     updatedAt DateTime @updatedAt
 }
 
-    model SignUp {
-        id       String @id @default(auto()) @map("_id") @db.ObjectId
-        email    String
-        password String
-        name     String
-        status  String  @default("pending")
-        otp     Int?    
+model SignUp {
+    id       String  @id @default(auto()) @map("_id") @db.ObjectId
+    email    String @unique
+    password String
+    name     String
+    status   String  @default("pending")
+    token    String
 
-        @@unique([email])
-    }
+    
+}

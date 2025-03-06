@@ -1,14 +1,16 @@
 "use server";
-
-import { sendMail } from "@/lib/mail";
 import prisma from "@/lib/prisma";
-import { generateOTP, getHTML } from "@/lib/utils";
-import bcrypt from "bcryptjs";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 interface Payload {
   email: string;
   password: string;
   name: string;
+}
+
+interface DecodedToken extends JwtPayload {
+  email: string;
+  password: string;
 }
 
 export const createUser = async (payload: Payload) => {
@@ -27,11 +29,15 @@ export const createUser = async (payload: Payload) => {
   return result.data;
 };
 
-export const verifyUser = async (email: string, otp: number) => {
+export const verifyUser = async (token: string) => {
+  const decoded: any = jwt.verify(token, process.env.AUTH_SECRET as string);
+
+  const { email, password } = decoded;
   // first check if user exist or not
   const isUserExist = await prisma.signUp.findUnique({
     where: {
       email,
+      password,
     },
   });
 
@@ -49,23 +55,24 @@ export const verifyUser = async (email: string, otp: number) => {
       message: "You are already verified",
     };
   }
-  const isOTPMatched = Number(otp) === Number(isUserExist.otp);
+
+  const isTokenMatched = token === isUserExist.token;
   // check if otp matched or not
-  if (isUserExist && !isOTPMatched) {
+  if (isUserExist && !isTokenMatched) {
     return {
       status: false,
-      message: "Wrong OTP! Try Again",
+      message: "Verification failed!",
     };
   }
-  await prisma.signUp.update({
-    where: {
-      email,
-    },
-    data: {
-      status: "active",
-      otp: null,
-    },
-  });
+
+    await prisma.signUp.update({
+      where: {
+        email,
+      },
+      data: {
+        status: "active",
+      },
+    });
 
   return {
     status: true,

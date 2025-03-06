@@ -1,10 +1,10 @@
 import { auth } from "@/auth";
 import { sendMail } from "@/lib/mail";
 import prisma from "@/lib/prisma";
-import { generateOTP, getHTML } from "@/lib/utils";
+import { getHTML } from "@/lib/utils";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
-
+import jwt from "jsonwebtoken";
 export async function GET(req: Request) {
   try {
     const session = await auth();
@@ -56,14 +56,21 @@ export async function POST(req: Request) {
       password,
       Number(process.env.SALT_ROUND)
     );
-    const otp = generateOTP();
-    const html = getHTML(email, otp);
+    const payload = {
+      email,
+      hashedPassword,
+      exp: Math.floor(Date.now() / 1000) + (60 * 60) 
+    };
+    const token = jwt.sign(payload, process.env.AUTH_SECRET as string);
+
+    const url = `${process.env.BASE_URL}/auth/verify-email?token=${token}`;
+    const html = getHTML(email, url);
 
     const newData = {
       email,
       name,
       password: hashedPassword,
-      otp,
+      token,
     };
 
     const newSignUpUser = await prisma.signUp.create({
