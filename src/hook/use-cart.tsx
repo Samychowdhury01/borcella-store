@@ -59,7 +59,10 @@ const useCart = create(
       decreaseQuantity: (itemId: String) => {
         const newCartItems = get().cartItems.map((cartItem) =>
           cartItem.item.id === itemId
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            ? {
+                ...cartItem,
+                quantity: cartItem.quantity === 0 ? 0 : cartItem.quantity - 1,
+              }
             : cartItem
         );
         set({ cartItems: newCartItems });
@@ -73,4 +76,4 @@ const useCart = create(
     }
   )
 );
-export default useCart
+export default useCart;

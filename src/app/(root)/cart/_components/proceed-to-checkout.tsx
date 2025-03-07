@@ -36,7 +36,7 @@ const ProceedToCheckout = () => {
     }
   };
   return (
-    <Button onClick={handleCheckout} className="cursor-pointer">
+    <Button onClick={handleCheckout} className="cursor-pointer" disabled={!cartItems.length}>
       Proceed to Checkout
     </Button>
   );

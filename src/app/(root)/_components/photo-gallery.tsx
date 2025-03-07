@@ -4,14 +4,13 @@ import img2 from "../../../../public/products/dress/1.jpg";
 import img3 from "../../../../public/products/hat/1.jpg";
 import img4 from "../../../../public/products/dress/4.jpg";
 import { Section } from "@/components/responsive-section";
+import SectionTitle from "./section-title";
 
 export default function PhotoGallery() {
   return (
     <Section>
-      <h2 className="text-heading1 leading-heading1 font-bold mb-5 text-center">
-        Our Products Looks
-      </h2>
-      <div className="container mx-auto p-4 md:p-8">
+      <SectionTitle title="Our Products Look" width="30px" />
+      <div className="mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
           {/* Large image at the top */}
           <div className="md:col-span-2 rounded-lg overflow-hidden">

@@ -5,6 +5,7 @@ import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 
 import Image from "next/image";
 import ProceedToCheckout from "./_components/proceed-to-checkout";
+import { Section } from "@/components/responsive-section";
 
 const CartPage = () => {
   const { cartItems, decreaseQuantity, increaseQuantity, removeItem } =
@@ -17,87 +18,91 @@ const CartPage = () => {
   const totalRounded = parseFloat(total.toFixed(2));
 
   return (
-    <div className="flex gap-20 py-16 px-10 max-lg:flex-col max-sm:px-3">
-      <div className="w-2/3 max-lg:w-full">
-        <p className="text-heading3 font-bold">Shopping Cart</p>
-        <hr className="my-6" />
+    <Section>
+      <div className="flex gap-20 max-lg:flex-col">
+        <div className="w-2/3 max-lg:w-full">
+          <p className="text-heading3 font-bold">Shopping Cart</p>
+          <hr className="my-6" />
 
-        {cartItems.length === 0 ? (
-          <p className="text-body font-bold">No item in cart</p>
-        ) : (
-          <div>
-            {cartItems.map((cartItem) => (
-              <div
-                key={cartItem.item.id}
-                className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between border rounded-lg"
-              >
-                <div className="flex items-center">
-                  <Image
-                    src={cartItem.item.media[0]}
-                    width={100}
-                    height={100}
-                    className="rounded-lg w-32 h-32 object-cover"
-                    alt="product"
-                  />
-                  <div className="flex flex-col gap-3 ml-4">
-                    <p className="text-body font-bold">
-                      Product:{cartItem.item.title}
-                    </p>
-                    {cartItem.color && (
-                      <p className="text-small font-medium">
-                        Color: {cartItem.color}
-                      </p>
-                    )}
-                    {cartItem.size && (
-                      <p className="text-small font-medium">
-                        Size: {cartItem.size}
-                      </p>
-                    )}
-                    <p className="text-small font-medium">
-                      Price: ${cartItem.item.price}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-center">
-                  <MinusCircle
-                    className="hover:text-gray-2 cursor-pointer"
-                    onClick={() => decreaseQuantity(cartItem.item.id)}
-                  />
-                  <p className="text-body-bold">{cartItem.quantity}</p>
-                  <PlusCircle
-                    className="hover:text-gray-2  cursor-pointer"
-                    onClick={() => increaseQuantity(cartItem.item.id)}
-                  />
-                </div>
-
-                <Button
-                  variant={"destructive"}
-                  size={"icon"}
-                  className="cursor-pointer"
+          {cartItems.length === 0 ? (
+            <p className="text-body font-bold">No item in cart</p>
+          ) : (
+            <div>
+              {cartItems.map((cartItem) => (
+                <div
+                  key={cartItem.item.id}
+                  className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between border rounded-lg bg-primary/10"
                 >
-                  <Trash onClick={() => removeItem(cartItem.item.id)} />
-                </Button>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+                  <div className="flex items-center">
+                    <Image
+                      src={cartItem.item.media[0]}
+                      width={100}
+                      height={100}
+                      className="rounded-lg w-32 h-32 object-cover"
+                      alt="product"
+                    />
+                    <div className="flex flex-col gap-3 ml-4">
+                      <p className="text-body font-bold">
+                        Product: {cartItem.item.title}
+                      </p>
+                      {cartItem.color && (
+                        <p className="text-small font-medium">
+                          Color: {cartItem.color}
+                        </p>
+                      )}
+                      {cartItem.size && (
+                        <p className="text-small font-medium">
+                          Size: {cartItem.size}
+                        </p>
+                      )}
+                      <p className="text-small font-medium">
+                        Price: ${cartItem.item.price}
+                      </p>
+                    </div>
+                  </div>
 
-      <div className="w-1/3 max-lg:w-full flex flex-col gap-8 bg-grey-1 rounded-lg px-4 py-5">
-        <p className="text-heading4-bold pb-4">
-          Summary{" "}
-          <span>{`(${cartItems.length} ${
-            cartItems.length > 1 ? "items" : "item"
-          })`}</span>
-        </p>
-        <div className="flex justify-between text-body-semibold">
-          <span>Total Amount</span>
-          <span>$ {totalRounded}</span>
+                  <div className="flex gap-4 items-center">
+                    <button
+                      disabled={cartItem.quantity === 0}
+                      onClick={() => decreaseQuantity(cartItem.item.id)}
+                    >
+                      <MinusCircle className="hover:text-gray-2 cursor-pointer size-5" />
+                    </button>
+                    <p className="text-body-bold">{cartItem.quantity}</p>
+                    <button onClick={() => increaseQuantity(cartItem.item.id)}>
+                      <PlusCircle className="hover:text-gray-2 cursor-pointer size-5" />
+                    </button>
+                  </div>
+
+                  <Button
+                    variant={"destructive"}
+                    size={"icon"}
+                    className="cursor-pointer"
+                    onClick={() => removeItem(cartItem.item.id)} 
+                  >
+                    <Trash/>
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-        <ProceedToCheckout />
+
+        <div className="w-1/3 max-lg:w-full flex flex-col gap-8 bg-grey-1 rounded-lg px-4 py-5">
+          <p className="text-heading4 font-bold pb-4">
+            Summary{" "}
+            <span>{`(${cartItems.length} ${
+              cartItems.length > 1 ? "items" : "item"
+            })`}</span>
+          </p>
+          <div className="flex justify-between text-body font-semibold">
+            <span>Total Amount</span>
+            <span>$ {totalRounded}</span>
+          </div>
+          <ProceedToCheckout />
+        </div>
       </div>
-    </div>
+    </Section>
   );
 };
 

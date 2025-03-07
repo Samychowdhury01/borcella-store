@@ -24,7 +24,7 @@ const AddToWishlist = ({ productId }: { productId: string }) => {
   };
 
   return (
-    <Button variant="ghost" onClick={handleLike} disabled={loading}>
+    <Button variant="ghost" onClick={handleLike} disabled={loading} className="hover:bg-transparent cursor-pointer">
       <Heart
         className="h-7 w-7"
         fill={`${isLiked ? "red" : "white"}`}

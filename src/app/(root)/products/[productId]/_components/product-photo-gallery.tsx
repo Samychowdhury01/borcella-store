@@ -25,7 +25,7 @@ const ProductPhotoGallery = ({ media }: { media: string[] }) => {
             width={200}
             className={cn(
               "w-20 h-20 rounded-lg object-cover cursor-pointer",
-              imageUrl === img && "border-2 border-black"
+              imageUrl === img && "border-2 border-primary"
             )}
             onClick={() => setImageUrl(img)}
           />

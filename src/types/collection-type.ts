@@ -4,6 +4,7 @@ export type TCollection = {
   description: string;
   imageUrl: string;
   productIds: string[];
+  _count?: number;
   createdAt: string;
   updatedAt: string;
 };

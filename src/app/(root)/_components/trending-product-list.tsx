@@ -1,4 +1,4 @@
-import { getProducts } from "@/actions/product-actions";
+import {  getProductsByCollectionId } from "@/actions/product-actions";
 import ProductCard from "@/components/product-card";
 import { Section } from "@/components/responsive-section";
 import { TProduct } from "@/types/product-type";
@@ -8,17 +8,26 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const ProductList = async () => {
-  const products = await getProducts();
+const TrendingProductList = async () => {
+  const products = await getProductsByCollectionId("67c2a5dd186167c89b831a76");
+  
   return (
     <Section>
       <div className="flex items-center justify-between mb-10 mt-16">
         {/* heading */}
-        <SectionTitle title="Products" width="20px" />
-
+        
+        <div className="flex flex-col items-start">
+      <h2 className="text-heading3 md:text-heading1 md:leading-heading1  font-bold line-clamp-1 ">
+      Trending Products 🔥
+      </h2>
+      <div
+        className={`h-2 bg-primary w-[30px]`}
+       
+      ></div>
+    </div>
         <Button asChild className="group">
-          <Link href="/products" className="flex items-center gap-x-1">
-            See All Products
+          <Link href="/collections/67c2a5dd186167c89b831a76" className="flex items-center gap-x-1">
+            See Trending Products
             <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </Button>
@@ -40,4 +49,4 @@ const ProductList = async () => {
   );
 };
 
-export default ProductList;
+export default TrendingProductList;

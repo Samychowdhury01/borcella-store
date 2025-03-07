@@ -15,18 +15,13 @@ const SearchBox = () => {
     router.push(`/search/${query}`);
   };
   return (
-    <div className="flex items-center gap-x-3">
+    <div className="flex items-center gap-x-2">
       <Input
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search Products.."
-        className="max-sm:max-w-[150px]"
+        className="w-full"
       />
-      <Button
-        variant={"ghost"}
-        size={"icon"}
-        disabled={query === ""}
-        onClick={handleSearch}
-      >
+      <Button size={"icon"} disabled={query === ""} onClick={handleSearch}>
         {loading ? (
           <Loader className="animate-spin" />
         ) : (

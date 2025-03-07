@@ -2,11 +2,12 @@ import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Facebook, Instagram, Twitter, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+import { Section } from "./responsive-section"
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t mt-10">
-      <div className="container px-4 py-12 mx-auto">
+    <footer className="bg-secondary text-white border-t mt-10">
+      <Section>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand and About */}
           <div className="space-y-4">
@@ -109,7 +110,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </Section>
     </footer>
   )
 }
