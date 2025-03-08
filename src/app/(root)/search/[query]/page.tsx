@@ -3,6 +3,7 @@ import ProductCard from "@/components/product-card";
 import { Section } from "@/components/responsive-section";
 import { TProduct } from "@/types/product-type";
 import React from "react";
+import SectionBanner from "../../_components/section-banner";
 const SearchPage = async ({
   params,
 }: {
@@ -12,13 +13,17 @@ const SearchPage = async ({
   const searchResults = await getSearchResults(query);
   const decodedQuery = decodeURIComponent(query);
   return (
-    <Section  className="!pt-0">
-      <p className="text-heading3 font-bold my-10">
+   <>
+   <SectionBanner
+   title="Search Results"
+   />
+    <Section className="pb-[40px] sm:pb-[60px] md:pb-[80px] lg:pb-[120px] xl:pb-[140px]">
+      <p className="text-heading3 font-bold my-10 text-center">
         Search result for {decodedQuery}
       </p>
 
       {!searchResults.length && (
-        <p className="font-semibold text-destructive">
+        <p className="font-semibold text-destructive text-center">
           No products found with {decodedQuery}
         </p>
       )}
@@ -29,6 +34,7 @@ const SearchPage = async ({
           ))}
       </div>
     </Section>
+   </>
   );
 };
 

@@ -26,7 +26,7 @@ const ProductDetailsPage = async ({ params }: ProductDetailsPageProps) => {
     title={productDetails.title}
     />
     <Section>
-      <div className="flex justify-start items-start gap-16 py-10 px-5 max-md:flex-col max-md:items-center">
+      <div className="flex justify-center items-center gap-16 py-10 px-5 max-md:flex-col max-md:items-center">
         <ProductPhotoGallery media={productDetails?.media} />
 
         <ProductInfo productInfo={productDetails} />
