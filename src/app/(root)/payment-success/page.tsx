@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import "./_style/index.css";
 import useCart from "@/hook/use-cart";
 import Link from "next/link";
+import { Section } from "@/components/responsive-section";
 export default function PaymentSuccessPage() {
   const cart = useCart();
   const [showCheck, setShowCheck] = useState(false);
@@ -28,7 +29,7 @@ export default function PaymentSuccessPage() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-green-50 to-green-100 p-4">
-      <div className="text-center space-y-6">
+      <Section className="text-center space-y-6">
         <div
           className={`inline-flex items-center justify-center w-24 h-24 rounded-full bg-green-100 text-green-600 transition-all duration-500 ease-out ${
             showCheck ? "scale-100 opacity-100" : "scale-50 opacity-0"
@@ -68,7 +69,7 @@ export default function PaymentSuccessPage() {
             Back to Home
           </Link>
         </Button>
-      </div>
+      </Section>
     </div>
   );
 }

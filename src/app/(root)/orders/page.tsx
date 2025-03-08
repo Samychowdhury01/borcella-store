@@ -1,5 +1,6 @@
 import { getOrders } from "@/actions/order-actions";
 import { auth } from "@/auth";
+import { Section } from "@/components/responsive-section";
 import { Card } from "@/components/ui/card";
 import { TProduct } from "@/types/product-type";
 import Image from "next/image";
@@ -27,7 +28,7 @@ const Orders = async () => {
   const orders = await getOrders(userId as string);
   console.log(orders, "server order");
   return (
-    <div className="px-10 py-5 max-sm:px-3">
+    <Section>
       <p className="text-heading3 font-bold my-10">Your Orders</p>
       {!orders ||
         (orders.length === 0 && (
@@ -96,7 +97,7 @@ const Orders = async () => {
           </Card>
         ))}
       </div>
-    </div>
+    </Section>
   );
 };
 

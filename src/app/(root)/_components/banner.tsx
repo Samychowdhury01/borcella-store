@@ -6,8 +6,8 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="bg-primary/70 min-h-full lg:h-[70vh]">
-      <Section>
+    <div className="bg-primary/70 min-h-full  relative">
+      <section className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-center">
           {/* title and buttons */}
           <div className="space-y-5 flex-1">
@@ -32,7 +32,7 @@ const Banner = () => {
             </div>
           </div>
           {/* image */}
-          <div className="flex-1 relative aspect-square mt-10 md:-mt-5 w-full">
+          <div className="flex-1 relative aspect-square mt-10  w-full md:h-[600px]">
             <Image
               src="/banner-image.png"
               alt="banner-image"
@@ -42,7 +42,7 @@ const Banner = () => {
             />
           </div>
         </div>
-      </Section>
+      </section>
     </div>
   );
 };

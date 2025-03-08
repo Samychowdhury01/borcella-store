@@ -1,5 +1,6 @@
 import { getSearchResults } from "@/actions/search-action";
 import ProductCard from "@/components/product-card";
+import { Section } from "@/components/responsive-section";
 import { TProduct } from "@/types/product-type";
 import React from "react";
 const SearchPage = async ({
@@ -11,7 +12,7 @@ const SearchPage = async ({
   const searchResults = await getSearchResults(query);
   const decodedQuery = decodeURIComponent(query);
   return (
-    <section className="px-10 py-5 ">
+    <Section>
       <p className="text-heading3 font-bold my-10">
         Search result for {decodedQuery}
       </p>
@@ -27,7 +28,7 @@ const SearchPage = async ({
             <ProductCard key={product.id} product={product} />
           ))}
       </div>
-    </section>
+    </Section>
   );
 };
 

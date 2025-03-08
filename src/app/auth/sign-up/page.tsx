@@ -48,12 +48,14 @@ export default function SignUpPage() {
     startTransition(async () => {
       try {
         const newUser = await createUser(values)
-
+console.log(newUser)
         if (newUser?.id) {
           setUserEmail(newUser.email)
           setIsSignupSuccessful(true)
           // Instead of redirecting, we'll show the success message
           // router.push(`/auth/verify-email?email=${newUser.email}`);
+        }else{
+          toast.error("Something went wrong. Try Again!")
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred")

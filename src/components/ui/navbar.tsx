@@ -18,7 +18,7 @@ const Navbar = () => {
   const { cartItems } = useCart();
 
   return (
-    <nav className="sticky top-0 z-20 py-5 px-10  bg-secondary text-white max-sm:px-2">
+    <nav className="sticky top-0 z-20 py-5 px-10  bg-secondary text-white">
       <div className="mx-auto md:max-w-7xl flex justify-between items-center">
         {/* logo */}
         <Link href="/">
@@ -27,7 +27,7 @@ const Navbar = () => {
             alt="borcella-store-logo"
             width={130}
             height={100}
-            className="w-[250px]"
+            className="w-[250px] h-full object-cover -ml-10"
           />
         </Link>
 
