@@ -6,12 +6,12 @@ import { Section } from "./responsive-section"
 
 export function Footer() {
   return (
-    <footer className="bg-secondary text-white border-t mt-10">
+    <footer className="bg-secondary border-t mt-10">
       <Section>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand and About */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Borcella</h2>
+            <h2 className="text-2xl font-bold uppercase">Borcella</h2>
             <p className="text-muted-foreground">
               Crafting exceptional experiences with quality and innovation since 2010.
             </p>

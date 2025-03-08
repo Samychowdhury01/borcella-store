@@ -15,7 +15,7 @@ export function Section({
   return (
     <section
       className={cn(
-        "py-8 md:py-12 lg:py-16", 
+        "pt-[40px] sm:pt-[60px] md:pt-[80px] lg:pt-[120px] xl:pt-[140px]", 
         container && "px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto", 
         className
       )}

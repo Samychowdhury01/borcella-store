@@ -8,23 +8,18 @@ import SectionTitle from "./section-title";
 import { CollectionCard } from "../collections/_components/collection-card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import SectionHeading from "./section-heading";
 
 const Collections = async () => {
   const collections = await getCollections();
   return (
     <Section>
       <>
-        <div className="flex items-center justify-between mb-10 mt-16">
-          {/* heading */}
-          <SectionTitle title="Collections" width="30px" />
+        {/* heading */}
+        <SectionHeading title="Collections" description="AHere is our new collections that you may like.
 
-          <Button asChild className="group">
-            <Link href="/collections" className="flex items-center gap-x-1">
-              See All Collections
-              <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </Button>
-        </div>
+" />
+
         {collections.length === 0 && (
           <p className="text-center w-full text-red-500 font-bold">
             No Collections Found!

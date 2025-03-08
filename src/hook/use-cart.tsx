@@ -31,9 +31,7 @@ const useCart = create(
           (cartItem) => cartItem.item.id === item.id
         );
         if (existingItems) {
-          return toast.custom("Item already exist in the cart!", {
-            className: "bg-yellow-500 text-black",
-          });
+          return toast.error("Item already exist in the cart!");
         }
         set({
           cartItems: [...currentItems, data],

@@ -7,28 +7,22 @@ import SectionTitle from "./section-title";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import SectionHeading from "./section-heading";
 
 const ProductList = async () => {
   const products = await getProducts();
   return (
     <Section>
-      <div className="flex items-center justify-between mb-10 mt-16">
-        {/* heading */}
-        <SectionTitle title="Products" width="20px" />
-
-        <Button asChild className="group">
-          <Link href="/products" className="flex items-center gap-x-1">
-            See All Products
-            <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </Button>
-      </div>
+      <SectionHeading
+        title="Popular Products"
+        description="Here is our new arraival products that you may like."
+      />
       {products.length === 0 && (
         <p className="text-center w-full text-red-500 font-bold">
           No Products Found!
         </p>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-14 mx-auto">
         {products.length !== 0 &&
           products
             ?.slice(0, 8)

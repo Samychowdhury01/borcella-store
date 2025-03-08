@@ -31,7 +31,7 @@ export function DropdownMenubar() {
             <Link
               href={route.href}
               className={cn(
-                " hover:text-gray-500 transition-all duration-150 ease-linear",
+                "text-black hover:font-bold transition-all duration-150 ease-linear",
                 isActive(route.href) && "text-primary font-semibold"
               )}
             >

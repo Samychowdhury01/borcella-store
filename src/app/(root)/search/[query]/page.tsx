@@ -12,7 +12,7 @@ const SearchPage = async ({
   const searchResults = await getSearchResults(query);
   const decodedQuery = decodeURIComponent(query);
   return (
-    <Section>
+    <Section  className="!pt-0">
       <p className="text-heading3 font-bold my-10">
         Search result for {decodedQuery}
       </p>

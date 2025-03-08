@@ -30,7 +30,7 @@ export function CollectionCard({
           />
         </div>
         <CardContent className="p-4">
-          <h3 className="font-semibold text-lg line-clamp-1">{title}</h3>
+          <h3 className="font-semibold text-lg line-clamp-1 capitalize">{title}</h3>
           <p className="text-sm text-muted-foreground mt-1">
             {productCount} {productCount === 1 ? "product" : "products"}
           </p>

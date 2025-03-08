@@ -6,6 +6,7 @@ import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
 import ProceedToCheckout from "./_components/proceed-to-checkout";
 import { Section } from "@/components/responsive-section";
+import SectionBanner from "../_components/section-banner";
 
 const CartPage = () => {
   const { cartItems, decreaseQuantity, increaseQuantity, removeItem } =
@@ -18,6 +19,10 @@ const CartPage = () => {
   const totalRounded = parseFloat(total.toFixed(2));
 
   return (
+    <>
+    <SectionBanner
+    title="Your Products"
+    />
     <Section>
       <div className="flex gap-20 max-lg:flex-col">
         <div className="w-2/3 max-lg:w-full">
@@ -27,11 +32,11 @@ const CartPage = () => {
           {cartItems.length === 0 ? (
             <p className="text-body font-bold">No item in cart</p>
           ) : (
-            <div>
+            <div className="flex flex-col items-center gap-5">
               {cartItems.map((cartItem) => (
                 <div
                   key={cartItem.item.id}
-                  className="w-full flex max-sm:flex-col max-sm:gap-3 px-4 py-3 items-center max-sm:items-start justify-between border rounded-lg bg-primary/10"
+                  className="w-full flex max-sm:flex-col max-sm:gap-3 px-4 py-3 items-center max-sm:items-start justify-between border rounded-lg bg-muted"
                 >
                   <div className="flex items-center">
                     <Image
@@ -88,7 +93,7 @@ const CartPage = () => {
           )}
         </div>
 
-        <div className="w-1/3 max-lg:w-full flex flex-col gap-8 bg-grey-1 rounded-lg px-4 py-5">
+        <div className="w-1/3 max-lg:w-full flex flex-col gap-8 bg-grey-1 rounded-lg px-4 py-5  shadow-xl h-fit md:mt-10 sticky top-20">
           <p className="text-heading4 font-bold pb-4">
             Summary{" "}
             <span>{`(${cartItems.length} ${
@@ -103,6 +108,7 @@ const CartPage = () => {
         </div>
       </div>
     </Section>
+    </>
   );
 };
 

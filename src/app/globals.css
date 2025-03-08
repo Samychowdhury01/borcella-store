@@ -6,9 +6,6 @@
 @plugin "tailwindcss-animate";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
   /* Color fixes */
   --color-red-1: #ff0000;
   --color-gray-1: #f7f7f7;
@@ -16,9 +13,10 @@
 
   /* Text sizes */
   --text-heading1: 50px;
-  --text-heading2: 30px;
+  --text-heading2: 35px;
   --text-heading3: 24px;
   --text-heading4: 20px;
+  --text-product-heading: 22px;
   --text-body: 18px;
   --text-base: 16px;
   --text-small: 14px;
@@ -38,23 +36,22 @@ html,
 body,
 :root {
   height: 100%;
-  background: #FFF5ED;
+  font-family: var(--font-mulish);
 }
-
 
 :root {
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(86.85% 0.186 135.03);
-  --primary-foreground: oklch(21.34% 0.000 0);
-  --secondary: oklch(21.34% 0.000 0);
-  --secondary-foreground: oklch(21.34% 0.000 0);
-  --muted: oklch(0.967 0.001 286.375);
+  --popover-foreground: oklch(0.141 0050 285.823);
+  --primary: oklch(68.12% 0.1835 22.93);
+  --primary-foreground: oklch(21.34% 0 0);
+  --secondary: oklch(96.42% 0 0);
+  --secondary-foreground: oklch(96.42% 0 0);
+  --muted: oklch(96.12% 0 0);
   --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
+  --accent: oklch(92.58% 0.004 286.32);
+  --accent-foreground: oklch(43.86% 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.92 0.004 286.32);
@@ -159,4 +156,22 @@ body,
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.section-heading :before {
+  position: absolute;
+  background: #f56061;
+  left: 50%;
+  width: 106px;
+  height: 3px;
+  content: "";
+  bottom: -15px;
+  transform: translateX(-50%);
+}
+
+
+
+/* text */
+.font-lora {
+  font-family: var(--font-lora);
 }

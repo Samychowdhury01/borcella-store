@@ -29,8 +29,6 @@ export const routes = [
 ];
 
 const NavbarRoutes = () => {
-  const session = useSession();
-  const userId = session.data?.user?.id;
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
 
@@ -41,8 +39,8 @@ const NavbarRoutes = () => {
           key={index}
           href={route.href}
           className={cn(
-            "hover:text-primary transition-all duration-150 ease-linear",
-            isActive(route.href) && "text-primary font-semibold"
+            "hover:font-bold transition-all duration-150 ease-linear uppercase",
+            isActive(route.href) && "font-bold"
           )}
         >
           {route.label}

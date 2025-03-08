@@ -32,7 +32,7 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
         <p className="text-base font-medium text-gray-2 "> Category:</p>
         <p className="text-base font-bold ">{productInfo.category}</p>
       </div>
-      <p className="text-heading3 font-bold">$ {productInfo.price}</p>
+      <p className="text-heading3 font-bold">{productInfo.price} USD</p>
 
       {/* description */}
       <div className="flex flex-col gap-2">

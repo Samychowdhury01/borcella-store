@@ -7,31 +7,17 @@ import SectionTitle from "./section-title";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import SectionHeading from "./section-heading";
 
 const TrendingProductList = async () => {
   const products = await getProductsByCollectionId("67c2a5dd186167c89b831a76");
   
   return (
     <Section>
-      <div className="flex items-center justify-between mb-10 mt-16">
-        {/* heading */}
-        
-        <div className="flex flex-col items-start">
-      <h2 className="text-heading3 md:text-heading1 md:leading-heading1  font-bold line-clamp-1 ">
-      Trending Products 🔥
-      </h2>
-      <div
-        className={`h-2 bg-primary w-[30px]`}
-       
-      ></div>
-    </div>
-        <Button asChild className="group">
-          <Link href="/collections/67c2a5dd186167c89b831a76" className="flex items-center gap-x-1">
-            See Trending Products
-            <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </Button>
-      </div>
+      <SectionHeading
+      title="Trending Products"
+      description="Here is our trending products that you may like."
+      />
       {products.length === 0 && (
         <p className="text-center w-full text-red-500 font-bold">
           No Products Found!

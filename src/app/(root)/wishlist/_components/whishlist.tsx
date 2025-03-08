@@ -1,11 +1,10 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ProductCard from "@/components/product-card";
 import type { TProduct } from "@/types/product-type";
 import { Loader2 } from "lucide-react";
 import useWishlist from "@/hook/use-wishlist";
+import WishlistProductTable from "./wishlist-table";
 
 export default function Wishlist() {
   const router = useRouter();
@@ -77,18 +76,8 @@ export default function Wishlist() {
   }
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {products.length > 0 ? (
-          products.map((item: TProduct) => (
-            <ProductCard key={item.id} product={item} />
-          ))
-        ) : (
-          <p className="text-destructive font-semibold col-span-full">
-            No wishlist items available.
-          </p>
-        )}
-      </div>
+    <div>
+      {products.length !== 0 && <WishlistProductTable products={products} />}
     </div>
   );
 }
