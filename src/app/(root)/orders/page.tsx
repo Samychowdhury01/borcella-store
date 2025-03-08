@@ -39,11 +39,14 @@ const Orders = async () => {
         {orders?.map((order: TOrder) => (
           <Card
             key={order.id}
-            className="flex flex-col gap-8 p-4 hover:bg-gray-1"
+            className="flex flex-col gap-8 p-4  bg-primary/10"
           >
             <div className="flex flex-col gap-5">
               {order?.products?.map((orderItem: TProductOrder) => (
-                <div key={orderItem.id} className="flex items-center gap-4">
+                <div
+                  key={orderItem.id}
+                  className="flex items-center gap-4"
+                >
                   <Image
                     src={orderItem.product.media[0]}
                     alt={orderItem.product.title}

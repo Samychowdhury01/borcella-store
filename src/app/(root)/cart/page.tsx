@@ -31,7 +31,7 @@ const CartPage = () => {
               {cartItems.map((cartItem) => (
                 <div
                   key={cartItem.item.id}
-                  className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between border rounded-lg bg-primary/10"
+                  className="w-full flex max-sm:flex-col max-sm:gap-3 px-4 py-3 items-center max-sm:items-start justify-between border rounded-lg bg-primary/10"
                 >
                   <div className="flex items-center">
                     <Image
