@@ -64,7 +64,7 @@ const Navbar = () => {
               <Button
                 asChild
                 variant={"ghost"}
-                className="hover:text-primary hover:bg-transparent"
+                  className="bg-accent hover:bg-accent hover:text-black rounded-full flex items-center justify-center h-10"
               >
                 <Link href="/auth">
                   <CircleUserRound className="size-5" />
