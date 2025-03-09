@@ -39,43 +39,47 @@ export async function ReviewSection({ productId }: { productId: string }) {
           </span>
         </div>
       </div>
-      {reviews.length === 0 && <p className="text-center text-primary">No Review Available!</p>}
-      <div className="space-y-4 h-[350px] overflow-y-auto scrollbar-custom px-1">
-        {reviews.map((review) => (
-          <Card key={review.id}>
-            <CardHeader className="pb-2">
-              <div className="flex items-start justify-between">
-                <div className="flex items-center space-x-3">
-                  <Avatar>
-                    <AvatarFallback>{review.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <CardTitle className="text-base">{review.name}</CardTitle>
-                    <p className="text-sm text-muted-foreground">
-                      {Intl.DateTimeFormat("US").format(review?.createdAt)}
-                    </p>
+      {reviews.length === 0 && (
+        <p className="text-center text-primary">No Review Available!</p>
+      )}
+      {reviews.length !== 0 && (
+        <div className="space-y-4 h-[350px] overflow-y-auto scrollbar-custom px-1 ">
+          {reviews.map((review) => (
+            <Card key={review.id}>
+              <CardHeader className="pb-2">
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center space-x-3">
+                    <Avatar>
+                      <AvatarFallback>{review.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <CardTitle className="text-base">{review.name}</CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        {Intl.DateTimeFormat("US").format(review?.createdAt)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        className={`h-4 w-4 ${
+                          i < review.rating
+                            ? "fill-primary text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                      />
+                    ))}
                   </div>
                 </div>
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon
-                      key={i}
-                      className={`h-4 w-4 ${
-                        i < review.rating
-                          ? "fill-primary text-primary"
-                          : "text-muted-foreground"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm">{review.content}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm">{review.content}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
       <WriteReviewSection productId={productId} />
     </div>
   );
