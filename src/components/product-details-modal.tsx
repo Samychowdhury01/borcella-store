@@ -21,7 +21,7 @@ const ProductDetailsModal = ({ product }: { product: TProduct }) => {
           <Eye />
         </Button>
       </DialogTrigger>
-      <DialogContent className="flex items-center justify-between pt-5">
+      <DialogContent className="flex flex-col lg:flex-row items-center lg:justify-between pt-5">
         <ProductPhotoGallery media={product.media} />
         <ProductInfo productInfo={product} />
       </DialogContent>
