@@ -39,11 +39,8 @@ export async function ReviewSection({ productId }: { productId: string }) {
           </span>
         </div>
       </div>
-
-      <WriteReviewSection productId={productId} />
-
       {reviews.length === 0 && <p className="text-center text-primary">No Review Available!</p>}
-      <div className="space-y-4">
+      <div className="space-y-4 h-[350px] overflow-y-auto scrollbar-custom px-1">
         {reviews.map((review) => (
           <Card key={review.id}>
             <CardHeader className="pb-2">
@@ -79,6 +76,7 @@ export async function ReviewSection({ productId }: { productId: string }) {
           </Card>
         ))}
       </div>
+      <WriteReviewSection productId={productId} />
     </div>
   );
 }

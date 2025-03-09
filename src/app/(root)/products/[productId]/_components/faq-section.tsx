@@ -42,7 +42,7 @@ export async function FaqSection({ productId }: { productId: string }) {
       <h3 className="text-lg font-medium">Frequently Asked Questions</h3>
 
       <Accordion type="single" collapsible className="w-full">
-        {faqs.map((faq: any, index) => (
+        {faqs.map((faq: any, index: number) => (
           <AccordionItem key={index} value={`item-${index}`}>
             <AccordionTrigger className="text-left">
               {faq.question}

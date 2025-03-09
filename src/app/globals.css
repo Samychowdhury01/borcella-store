@@ -2,7 +2,6 @@
 
 @custom-variant dark (&:is(.dark *));
 @plugin "tailwind-scrollbar-hide";
-
 @plugin "tailwindcss-animate";
 
 @theme {

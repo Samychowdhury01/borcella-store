@@ -1,0 +1,14 @@
+/* In your global styles or a custom CSS file */
+.scrollbar-custom::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 10px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background-color: #d1d5db;
+  }
+  

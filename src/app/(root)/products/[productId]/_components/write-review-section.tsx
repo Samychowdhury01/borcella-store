@@ -18,7 +18,7 @@ import { useState, useTransition } from "react";
 import { useSession } from "next-auth/react";
 import { createReview } from "@/actions/review-action";
 import toast from "react-hot-toast";
-
+import '../_style/index.css'
 // Define the form schema with zod
 const reviewFormSchema = z.object({
   rating: z.number().min(1, "Please select a rating").max(5),
@@ -71,7 +71,7 @@ export default function WriteReviewSection({
   }
 
   return (
-    <Card>
+    <Card className="mt-10">
       <CardHeader>
         <CardTitle className="text-lg">Write a Review</CardTitle>
       </CardHeader>
@@ -142,7 +142,7 @@ export default function WriteReviewSection({
               className="w-full"
               disabled={!session || loading}
             >
-              {loading ? <Loader /> : "Submit review"}
+              {loading ? <Loader className="animate-spin"/> : "Submit review"}
             </Button>
           </form>
         </Form>
