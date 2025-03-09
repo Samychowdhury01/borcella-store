@@ -15,7 +15,7 @@ const Orders = async () => {
   return (
     <>
       <SectionBanner title="Orders" />
-      <Section className="pb-[40px] sm:pb-[60px] md:pb-[80px] lg:pb-[120px] xl:pb-[140px]">
+      <Section className="responsive-section-bottom">
         {!orders ||
           (orders.length === 0 && (
             <p className="text-body font-bold my-5 text-center">

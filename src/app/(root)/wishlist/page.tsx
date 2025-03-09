@@ -8,7 +8,7 @@ export default function WishlistPage() {
   return (
     <main>
       <SectionBanner title="Wishlist" />
-      <Section className="pb-[40px] sm:pb-[60px] md:pb-[80px] lg:pb-[120px] xl:pb-[140px]">
+      <Section className="responsive-section-bottom">
         <Suspense fallback={<WishlistSkeleton />}>
           <Wishlist />
         </Suspense>

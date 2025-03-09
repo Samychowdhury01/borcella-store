@@ -12,7 +12,7 @@ const CollectionsPage = async () => {
   return (
     <>
       <SectionBanner title="All Collections" />
-      <Section className="pb-[40px] sm:pb-[60px] md:pb-[80px] lg:pb-[120px] xl:pb-[140px]">
+      <Section className="responsive-section-bottom">
         {collections?.length === 0 && (
           <p className="text-center w-full text-red-500 font-bold">
             No collections Found!

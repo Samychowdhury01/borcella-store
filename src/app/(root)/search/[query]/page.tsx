@@ -13,28 +13,26 @@ const SearchPage = async ({
   const searchResults = await getSearchResults(query);
   const decodedQuery = decodeURIComponent(query);
   return (
-   <>
-   <SectionBanner
-   title="Search Results"
-   />
-    <Section className="pb-[40px] sm:pb-[60px] md:pb-[80px] lg:pb-[120px] xl:pb-[140px]">
-      <p className="text-heading3 font-bold my-10 text-center">
-        Search result for {decodedQuery}
-      </p>
-
-      {!searchResults.length && (
-        <p className="font-semibold text-destructive text-center">
-          No products found with {decodedQuery}
+    <>
+      <SectionBanner title="Search Results" />
+      <Section className="responsive-section-bottom">
+        <p className="text-heading3 font-bold my-10 text-center">
+          Search result for {decodedQuery}
         </p>
-      )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-5">
-        {searchResults.length !== 0 &&
-          searchResults?.map((product: TProduct) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
-    </Section>
-   </>
+
+        {!searchResults.length && (
+          <p className="font-semibold text-destructive text-center">
+            No products found with {decodedQuery}
+          </p>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-5">
+          {searchResults.length !== 0 &&
+            searchResults?.map((product: TProduct) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+        </div>
+      </Section>
+    </>
   );
 };
 
