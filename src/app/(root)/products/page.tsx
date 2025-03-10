@@ -1,5 +1,4 @@
 import { Section } from "@/components/responsive-section";
-import SectionTitle from "../_components/section-title";
 import { getProducts } from "@/actions/product-actions";
 import ProductCard from "@/components/product-card";
 import { TProduct } from "@/types/product-type";

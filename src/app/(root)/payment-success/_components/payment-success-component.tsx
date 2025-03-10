@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Check, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import "./_style/index.css";
+import "../_style/index.css";
 import useCart from "@/hook/use-cart";
 import Link from "next/link";
 import { Section } from "@/components/responsive-section";
