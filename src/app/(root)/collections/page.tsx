@@ -1,10 +1,19 @@
 import { Section } from "@/components/responsive-section";
-import SectionTitle from "../_components/section-title";
 import { getCollections } from "@/actions/collection-action";
 import { CollectionCard } from "./_components/collection-card";
 import { TCollection } from "@/types/collection-type";
-import SectionHeading from "../_components/section-heading";
 import SectionBanner from "../_components/section-banner";
+import { Metadata } from "next";
+
+
+export const  generateMetadata = (): Metadata =>{
+  return {
+    title : "All collections",
+    description: "Here you will find all the collections."
+  }
+  }
+
+
 
 const CollectionsPage = async () => {
   const collections = await getCollections();

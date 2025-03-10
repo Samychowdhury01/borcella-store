@@ -10,19 +10,32 @@ import ProductCard from "@/components/product-card";
 import { Section } from "@/components/responsive-section";
 import SectionHeading from "../../_components/section-heading";
 import SectionBanner from "../../_components/section-banner";
-import { getProductFAQs } from "@/actions/faq-action";
 import ProductTab from "./_components/product-tab";
+import { Metadata } from "next";
+import { capitalizeTitle } from "@/lib/capitalize-title";
 interface ProductDetailsPageProps {
   params: Promise<{
     productId: string;
   }>;
 }
+
+export const generateMetadata = async ({
+  params,
+}: ProductDetailsPageProps): Promise<Metadata> => {
+  const { productId } = await params;
+  const productDetails = await getProductDetails(productId);
+  const title = productDetails?.title && capitalizeTitle(productDetails?.title);
+  return {
+    title,
+    description: productDetails.description,
+  };
+};
+
 const ProductDetailsPage = async ({ params }: ProductDetailsPageProps) => {
   const { productId } = await params;
   const productDetails = await getProductDetails(productId);
   const relatedProducts = await getRelatedProducts(productId);
-  const faqs = await getProductFAQs(productId);
-  console.log(faqs)
+
   return (
     <>
       <SectionBanner title={productDetails.title} />
@@ -34,7 +47,7 @@ const ProductDetailsPage = async ({ params }: ProductDetailsPageProps) => {
         </div>
         {/* tab */}
         <div>
-          <ProductTab productId={productId}/>
+          <ProductTab productId={productId} />
         </div>
         {relatedProducts.length !== 0 && (
           <div className="flex flex-col items-center px-10 py-5 max-md:px-3 mt-20">

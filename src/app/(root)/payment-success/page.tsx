@@ -7,6 +7,15 @@ import "./_style/index.css";
 import useCart from "@/hook/use-cart";
 import Link from "next/link";
 import { Section } from "@/components/responsive-section";
+import { Metadata } from "next";
+
+export const generateMetadata = (): Metadata => {
+  return {
+    title: "Payment confirmation",
+    description: "Payment confirmation page.",
+  };
+};
+
 export default function PaymentSuccessPage() {
   const cart = useCart();
   const [showCheck, setShowCheck] = useState(false);

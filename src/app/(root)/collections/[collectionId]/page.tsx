@@ -1,17 +1,33 @@
 import { getSingleCollection } from "@/actions/collection-action";
 import ProductCard from "@/components/product-card";
 import { Section } from "@/components/responsive-section";
+import { capitalizeTitle } from "@/lib/capitalize-title";
 import { TProduct } from "@/types/product-type";
+import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
 
-const CollectionDetails = async ({
-  params,
-}: {
+type CollectionDetailsPageProps = {
   params: Promise<{ collectionId: string }>;
-}) => {
+};
+
+export const generateMetadata = async ({
+  params,
+}: CollectionDetailsPageProps): Promise<Metadata> => {
   const { collectionId } = await params;
   const collectionDetails = await getSingleCollection(collectionId);
+  const title =
+    collectionDetails.title && capitalizeTitle(collectionDetails.title);
+  return {
+    title,
+    description: collectionDetails.description,
+  };
+};
+
+const CollectionDetails = async ({ params }: CollectionDetailsPageProps) => {
+  const { collectionId } = await params;
+  const collectionDetails = await getSingleCollection(collectionId);
+
 
   return (
     <>
@@ -27,10 +43,10 @@ const CollectionDetails = async ({
       <Section className="responsive-section-bottom">
         <div className="flex flex-col items-center gap-5">
           <div>
-            <p className="text-heading2 font-bold font-lora">
+            <p className="text-heading2 font-bold font-lora capitalize">
               {collectionDetails.title}
             </p>
-            <div className="h-[3px] bg-primary"></div>
+            <div className="h-[3px] w-[106px] bg-primary mx-auto"></div>
           </div>
           <p className="text-body font-normal text-gray-2 text-center max-w-[900px]">
             {collectionDetails.description}

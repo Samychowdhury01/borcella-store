@@ -1,11 +1,16 @@
 import { getOrders } from "@/actions/order-actions";
 import { auth } from "@/auth";
 import { Section } from "@/components/responsive-section";
-import { Card } from "@/components/ui/card";
-import { TProduct } from "@/types/product-type";
-import Image from "next/image";
 import SectionBanner from "../_components/section-banner";
 import OrderTable from "./order-table";
+import { Metadata } from "next";
+
+export const generateMetadata = (): Metadata => {
+  return {
+    title: "Order list",
+    description: "Here you will find user order list.",
+  };
+};
 
 const Orders = async () => {
   const session = await auth();

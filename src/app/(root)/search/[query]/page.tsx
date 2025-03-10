@@ -4,11 +4,23 @@ import { Section } from "@/components/responsive-section";
 import { TProduct } from "@/types/product-type";
 import React from "react";
 import SectionBanner from "../../_components/section-banner";
-const SearchPage = async ({
-  params,
-}: {
+import { Metadata } from "next";
+
+type Props = {
   params: Promise<{ query: string }>;
-}) => {
+};
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { query } = await params;
+  return {
+    title: `Search result for ${query}`,
+    description: "Here you will find the products with the search query",
+  };
+};
+
+const SearchPage = async ({ params }: Props) => {
   const { query } = await params;
   const searchResults = await getSearchResults(query);
   const decodedQuery = decodeURIComponent(query);

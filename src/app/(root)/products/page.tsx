@@ -5,6 +5,14 @@ import ProductCard from "@/components/product-card";
 import { TProduct } from "@/types/product-type";
 import SearchBox from "@/components/ui/search-box";
 import SectionBanner from "../_components/section-banner";
+import { Metadata } from "next";
+
+export const generateMetadata = (): Metadata => {
+  return {
+    title: "Browse Products",
+    description: "Here you will find the products listed on the website",
+  };
+};
 
 const ProductsPage = async () => {
   const products = await getProducts();
