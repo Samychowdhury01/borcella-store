@@ -1,7 +1,5 @@
-import { Section } from "@/components/responsive-section";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Link from "next/link";
+
 import React from "react";
 
 const Banner = () => {
@@ -29,7 +27,7 @@ const Banner = () => {
               src="/banner-image.png"
               alt="banner-image"
               fill
-              className="object-contain"
+              className="object-contain object-right"
               priority
             />
           </div>

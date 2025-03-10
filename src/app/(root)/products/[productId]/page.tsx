@@ -38,19 +38,24 @@ const ProductDetailsPage = async ({ params }: ProductDetailsPageProps) => {
 
   return (
     <>
-      <SectionBanner title={productDetails.title} />
+      <SectionBanner
+        title={productDetails.title}
+        categoryType={productDetails.category}
+      />
       <Section>
-        <div className="flex justify-center items-center gap-16 py-10 px-5 max-md:flex-col max-md:items-center">
+        <div className="flex justify-start items-center gap-16 max-md:flex-col max-md:items-center">
           <ProductPhotoGallery media={productDetails?.media} />
 
-          <ProductInfo productInfo={productDetails} />
+          <div className="flex-1 w-full">
+            <ProductInfo productInfo={productDetails} />
+          </div>
         </div>
         {/* tab */}
-        <div>
+        <div className="mt-10">
           <ProductTab productId={productId} />
         </div>
         {relatedProducts.length !== 0 && (
-          <div className="flex flex-col items-center px-10 py-5 max-md:px-3 mt-20">
+          <div className="flex flex-col py-5 mt-20">
             <SectionHeading
               title="Related Products"
               description="Here are some related products that you may like."

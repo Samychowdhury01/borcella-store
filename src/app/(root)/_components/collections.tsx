@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import SectionTitle from "./section-title";
-import { CollectionCard } from "../collections/_components/collection-card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "./section-heading";
+import { CollectionCard } from "../collections/_components/collection-card";
 
 const Collections = async () => {
   const collections = await getCollections();
@@ -36,6 +36,7 @@ const Collections = async () => {
                   title={collection.title}
                   imageUrl={collection.imageUrl}
                   productCount={collection.productIds.length}
+                  description={collection.description}
                 />
               ))}
         </div>

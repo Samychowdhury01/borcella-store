@@ -17,7 +17,7 @@ const ProductDetailsModal = ({ product }: { product: TProduct }) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="rounded-none bg-[#212529] transition-all duration-300 ease-linear cursor-pointer md:block hidden">
+        <Button className="rounded-none hover:bg-[#212529] transition-all duration-300 ease-linear cursor-pointer md:block hidden">
           <Eye />
         </Button>
       </DialogTrigger>

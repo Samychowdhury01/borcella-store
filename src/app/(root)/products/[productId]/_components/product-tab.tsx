@@ -4,7 +4,7 @@ import { FaqSection } from "./faq-section";
 
 export default function ProductTab({ productId }: { productId: string }) {
   return (
-    <div className="w-full max-w-3xl mx-auto py-6">
+    <div className="w-full py-6">
       <Tabs defaultValue="reviews" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="reviews">Reviews</TabsTrigger>

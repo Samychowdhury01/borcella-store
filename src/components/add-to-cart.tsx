@@ -21,7 +21,7 @@ const AddToCart = ({
   const cart = useCart();
   return (
     <Button
-    className="rounded-none bg-[#212529] transition-all duration-300 ease-linear cursor-pointer"
+    className="rounded-none hover:bg-[#212529] transition-all duration-300 ease-linear cursor-pointer"
       onClick={() => {
         cart.addItem({
           item: productInfo,

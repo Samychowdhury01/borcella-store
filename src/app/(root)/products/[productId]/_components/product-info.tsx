@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import useCart from "@/hook/use-cart";
 import { cn } from "@/lib/utils";
 import { TProduct } from "@/types/product-type";
-import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
+import { MinusCircleIcon, PlusCircleIcon, ShoppingBag } from "lucide-react";
 import React, { useState } from "react";
 
 const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
@@ -22,7 +22,7 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
     }
   };
   return (
-    <div className="w-full max-w-[400px] flex flex-col gap-4 p-3">
+    <div className="w-full flex flex-col gap-4 p-3">
       <div className="flex items-center justify-between">
         <p className="text-heading3 font-bold">{productInfo.title}</p>
         <AddToWishlist productId={productInfo.id} />
@@ -83,24 +83,26 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
       {/* Quantity */}
       <div className="flex flex-col gap-2">
         <p className="text-base font-medium text-gray-2 ">Quantity:</p>
-        <div className="flex gap-4 items-center w-1/2">
+        <div className="flex gap-4 items-center w-[110px] bg-accent p-1 rounded-full shadow-2xl">
           <button
             onClick={() => handleQuantity("decrease")}
-            className="cursor-pointer"
+            className="cursor-pointer bg-white/50 p-0.5 rounded-full shadow-md"
           >
             <MinusCircleIcon />
           </button>
           <p className="text-body font-bold">{quantity}</p>
           <button
             onClick={() => handleQuantity("increase")}
-            className="cursor-pointer"
+            className="cursor-pointer bg-white/50 p-0.5 rounded-full shadow-md"
           >
             <PlusCircleIcon />
           </button>
         </div>
       </div>
       {/* add to cart */}
+      
       <Button
+      className="lg:w-1/4"
         onClick={() => {
           cart.addItem({
             item: productInfo,
@@ -111,7 +113,9 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
         }}
       >
         Add to Cart
+        <ShoppingBag/>
       </Button>
+  
     </div>
   );
 };

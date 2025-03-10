@@ -44,7 +44,7 @@ export async function FaqSection({ productId }: { productId: string }) {
       <Accordion type="single" collapsible className="w-full">
         {faqs.map((faq: any, index: number) => (
           <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-left">
+            <AccordionTrigger className="text-left cursor-pointer">
               {faq.question}
             </AccordionTrigger>
             <AccordionContent>

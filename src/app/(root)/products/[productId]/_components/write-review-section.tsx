@@ -13,12 +13,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import * as z from "zod";
-import { Loader, StarIcon } from "lucide-react";
+import { Loader, Send, StarIcon } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useSession } from "next-auth/react";
 import { createReview } from "@/actions/review-action";
 import toast from "react-hot-toast";
-import '../_style/index.css'
+import "../_style/index.css";
 // Define the form schema with zod
 const reviewFormSchema = z.object({
   rating: z.number().min(1, "Please select a rating").max(5),
@@ -96,7 +96,7 @@ export default function WriteReviewSection({
                           onClick={() => field.onChange(star)}
                           onMouseEnter={() => setHoveredRating(star)}
                           onMouseLeave={() => setHoveredRating(0)}
-                          className="p-1 focus:outline-none"
+                          className="p-1 focus:outline-none cursor-pointer"
                         >
                           <StarIcon
                             className={`h-6 w-6 ${
@@ -137,12 +137,15 @@ export default function WriteReviewSection({
               )}
             />
 
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={!session || loading}
-            >
-              {loading ? <Loader className="animate-spin"/> : "Submit review"}
+            <Button type="submit" disabled={!session || loading}>
+              {loading ? (
+                <Loader className="animate-spin" />
+              ) : (
+                <p className="flex items-center gap-x-2">
+                  Submit review
+                  <Send />
+                </p>
+              )}
             </Button>
           </form>
         </Form>
