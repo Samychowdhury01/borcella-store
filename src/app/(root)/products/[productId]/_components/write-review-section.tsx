@@ -137,7 +137,7 @@ export default function WriteReviewSection({
               )}
             />
 
-            <Button type="submit" disabled={!session || loading}>
+            <Button type="submit" disabled={!session || loading} className="cursor-pointer">
               {loading ? (
                 <Loader className="animate-spin" />
               ) : (

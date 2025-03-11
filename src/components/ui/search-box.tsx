@@ -21,7 +21,7 @@ const SearchBox = () => {
         placeholder="Search Products.."
         className="w-full"
       />
-      <Button size={"icon"} disabled={query === ""} onClick={handleSearch}>
+      <Button size={"icon"} disabled={query === ""} onClick={handleSearch} className="cursor-pointer">
         {loading ? (
           <Loader className="animate-spin" />
         ) : (
@@ -33,3 +33,4 @@ const SearchBox = () => {
 };
 
 export default SearchBox;
+

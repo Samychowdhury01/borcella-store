@@ -83,7 +83,7 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
       {/* Quantity */}
       <div className="flex flex-col gap-2">
         <p className="text-base font-medium text-gray-2 ">Quantity:</p>
-        <div className="flex gap-4 items-center w-[110px] bg-accent p-1 rounded-full shadow-2xl">
+        <div className="flex gap-4 items-center w-[110px] bg-accent p-1 rounded-full shadow-md shadow-gray-2">
           <button
             onClick={() => handleQuantity("decrease")}
             className="cursor-pointer bg-white/50 p-0.5 rounded-full shadow-md"
@@ -102,7 +102,7 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
       {/* add to cart */}
       
       <Button
-      className="lg:w-1/4"
+      className="lg:w-1/4 cursor-pointer"
         onClick={() => {
           cart.addItem({
             item: productInfo,

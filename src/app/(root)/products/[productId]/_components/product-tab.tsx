@@ -7,8 +7,8 @@ export default function ProductTab({ productId }: { productId: string }) {
     <div className="w-full py-6">
       <Tabs defaultValue="reviews" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="reviews">Reviews</TabsTrigger>
-          <TabsTrigger value="faqs">FAQs</TabsTrigger>
+          <TabsTrigger value="reviews" className="cursor-pointer">Reviews</TabsTrigger>
+          <TabsTrigger value="faqs" className="cursor-pointer">FAQs</TabsTrigger>
         </TabsList>
         <TabsContent value="reviews" className="pt-4">
           <ReviewSection productId={productId} />

@@ -37,6 +37,7 @@ const CollectionsPage = async () => {
                 productCount={collection.productIds.length}
                 id={collection.id}
                 key={collection.id}
+                description={collection.description}
               />
             ))}
         </div>
